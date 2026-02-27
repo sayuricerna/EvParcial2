@@ -1,0 +1,34 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3>Productos</h3>
+  <a routerLink="/productos/nuevo" class="btn btn-primary">+ Nuevo</a>
+</div>
+
+<table class="table table-bordered table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Código</th>
+      <th>Nombre</th>
+      <th>Talla</th>
+      <th>Color</th>
+      <th>Precio</th>
+      <th>Descuento</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of productos">
+      <td>{{ p.productoId }}</td>
+      <td>{{ p.codigo }}</td>
+      <td>{{ p.nombre }}</td>
+      <td>{{ p.talla }}</td>
+      <td>{{ p.color }}</td>
+      <td>${{ p.precio | number:'1.2-2' }}</td>
+      <td>{{ p.precioDescuento ? ('$' + (p.precioDescuento | number:'1.2-2')) : '—' }}</td>
+      <td>
+        <a [routerLink]="['/productos/editar', p.productoId]" class="btn btn-sm btn-warning me-1">Editar</a>
+        <button (click)="eliminar(p.productoId!)" class="btn btn-sm btn-danger">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

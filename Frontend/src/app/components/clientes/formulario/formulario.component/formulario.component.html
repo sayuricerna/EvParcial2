@@ -1,0 +1,40 @@
+<div class="col-md-6">
+  <h3>{{ esEdicion ? 'Editar' : 'Nuevo' }} Cliente</h3>
+  <form (ngSubmit)="guardar()">
+    <div class="mb-2">
+      <label>Nombre</label>
+      <input class="form-control" [(ngModel)]="cliente.nombre" name="nombre" required>
+    </div>
+    <div class="mb-2">
+      <label>Apellido</label>
+      <input class="form-control" [(ngModel)]="cliente.apellido" name="apellido" required>
+    </div>
+    <div class="mb-2">
+      <label>Email</label>
+      <input type="email" class="form-control" [(ngModel)]="cliente.email" name="email" required>
+    </div>
+    <div class="mb-2">
+      <label>Teléfono</label>
+      <input class="form-control" [(ngModel)]="cliente.telefono" name="telefono" required>
+    </div>
+    <div class="mb-2">
+      <label>Cédula</label>
+      <input class="form-control" [(ngModel)]="cliente.cedula" name="cedula" required>
+    </div>
+    <div class="mb-2">
+      <label>Dirección</label>
+      <input class="form-control" [(ngModel)]="cliente.direccion" name="direccion" required>
+    </div>
+    <div class="mb-3">
+      <label>Género</label>
+      <select class="form-select" [(ngModel)]="cliente.genero" name="genero" required>
+        <option value="">Seleccione</option>
+        <option value="Masculino">Masculino</option>
+        <option value="Femenino">Femenino</option>
+        <option value="Otro">Otro</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary me-2">Guardar</button>
+    <a routerLink="/clientes" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>

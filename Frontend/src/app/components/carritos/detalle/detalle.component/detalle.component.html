@@ -1,0 +1,64 @@
+<div *ngIf="carrito">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>Carrito #{{ carrito.carritoId }} — {{ carrito.clienteNombre }}</h3>
+    <a routerLink="/carritos" class="btn btn-secondary">← Volver</a>
+  </div>
+
+  <div *ngIf="carrito.estado === 'Activo'" class="card mb-3 p-3">
+    <h5>Agregar producto</h5>
+    <div class="d-flex gap-2">
+      <select class="form-select" [(ngModel)]="productoId">
+        <option [value]="0">Seleccione producto...</option>
+        <option *ngFor="let p of productos" [value]="p.productoId">
+          {{ p.nombre }} ({{ p.talla }}) — ${{ p.precioDescuento || p.precio }}
+        </option>
+      </select>
+      <input type="number" class="form-control" style="width: 90px"
+             [(ngModel)]="cantidad" min="1">
+      <button class="btn btn-primary" (click)="agregar()" [disabled]="!productoId">Agregar</button>
+    </div>
+  </div>
+
+  <table class="table table-bordered">
+    <thead class="table-light">
+      <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Precio Unit.</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of carrito.productos">
+        <td>{{ p.nombre }}</td>
+        <td>{{ p.cantidad }}</td>
+        <td>${{ p.precioUnitario | number:'1.2-2' }}</td>
+        <td>${{ p.subtotal | number:'1.2-2' }}</td>
+      </tr>
+      <tr *ngIf="!carrito.productos?.length">
+        <td colspan="4" class="text-center text-muted">Carrito vacío</td>
+      </tr>
+    </tbody>
+    <tfoot class="fw-bold">
+      <tr>
+        <td colspan="3" class="text-end">Subtotal:</td>
+        <td>${{ carrito.subtotal | number:'1.2-2' }}</td>
+      </tr>
+      <tr>
+        <td colspan="3" class="text-end">IVA (15%):</td>
+        <td>${{ carrito.iva | number:'1.2-2' }}</td>
+      </tr>
+      <tr class="table-success">
+        <td colspan="3" class="text-end">TOTAL:</td>
+        <td>${{ carrito.total | number:'1.2-2' }}</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <div class="text-end mt-2" *ngIf="carrito.estado === 'Activo'">
+    <button class="btn btn-success btn-lg" (click)="finalizar()"
+            [disabled]="!carrito.productos?.length">
+      Finalizar Compra ✅
+    </button>
+  </div>
+</div>

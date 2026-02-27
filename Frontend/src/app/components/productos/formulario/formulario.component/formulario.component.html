@@ -1,0 +1,35 @@
+<div class="col-md-6">
+  <h3>{{ esEdicion ? 'Editar' : 'Nuevo' }} Producto</h3>
+  <form (ngSubmit)="guardar()">
+    <div class="mb-2">
+      <label>Nombre</label>
+      <input class="form-control" [(ngModel)]="producto.nombre" name="nombre" required>
+    </div>
+    <div class="mb-2">
+      <label>Código</label>
+      <input class="form-control" [(ngModel)]="producto.codigo" name="codigo" required>
+    </div>
+    <div class="mb-2">
+      <label>Talla</label>
+      <input class="form-control" [(ngModel)]="producto.talla" name="talla" required>
+    </div>
+    <div class="mb-2">
+      <label>Color</label>
+      <input class="form-control" [(ngModel)]="producto.color" name="color" required>
+    </div>
+    <div class="mb-2">
+      <label>Precio</label>
+      <input type="number" class="form-control" [(ngModel)]="producto.precio" name="precio" required>
+    </div>
+    <div class="mb-2">
+      <label>Precio Descuento</label>
+      <input type="number" class="form-control" [(ngModel)]="producto.precioDescuento" name="precioDescuento">
+    </div>
+    <div class="mb-3">
+      <label>Foto (URL)</label>
+      <input class="form-control" [(ngModel)]="producto.foto" name="foto">
+    </div>
+    <button type="submit" class="btn btn-primary me-2">Guardar</button>
+    <a routerLink="/productos" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>

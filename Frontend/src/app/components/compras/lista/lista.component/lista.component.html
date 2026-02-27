@@ -1,0 +1,26 @@
+<h3 class="mb-3">Compras</h3>
+
+<table class="table table-bordered table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>#</th>
+      <th>Cliente</th>
+      <th>Carrito</th>
+      <th>Fecha</th>
+      <th>Subtotal</th>
+      <th>IVA (15%)</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of compras">
+      <td>{{ c.compraId }}</td>
+      <td>{{ c.clienteNombre }}</td>
+      <td>{{ c.carritoId }}</td>
+      <td>{{ c.fechaCompra | date:'dd/MM/yyyy HH:mm' }}</td>
+      <td>${{ c.subtotal | number:'1.2-2' }}</td>
+      <td>${{ c.iva | number:'1.2-2' }}</td>
+      <td class="text-success fw-bold">${{ c.total | number:'1.2-2' }}</td>
+    </tr>
+  </tbody>
+</table>

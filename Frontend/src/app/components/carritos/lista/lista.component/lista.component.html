@@ -1,0 +1,53 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3>Carritos</h3>
+</div>
+
+<div class="card mb-4 p-3">
+  <h5>Crear nuevo carrito</h5>
+  <div class="d-flex gap-2">
+    <select class="form-select" [(ngModel)]="clienteId">
+      <option [value]="0">Seleccione un cliente...</option>
+      <option *ngFor="let c of clientes" [value]="c.clienteId">
+        {{ c.nombre }} {{ c.apellido }}
+      </option>
+    </select>
+    <button class="btn btn-primary" (click)="crear()" [disabled]="!clienteId">Crear</button>
+  </div>
+</div>
+
+<table class="table table-bordered table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Cliente</th>
+      <th>Fecha</th>
+      <th>Estado</th>
+      <th>Subtotal</th>
+      <th>IVA (15%)</th>
+      <th>Total</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of carritos">
+      <td>{{ c.carritoId }}</td>
+      <td>{{ c.clienteNombre }}</td>
+      <td>{{ c.fechaCreacion | date:'dd/MM/yyyy HH:mm' }}</td>
+      <td>
+        <span class="badge"
+          [class.bg-success]="c.estado === 'Activo'"
+          [class.bg-secondary]="c.estado !== 'Activo'">
+          {{ c.estado }}
+        </span>
+      </td>
+      <td>${{ c.subtotal | number:'1.2-2' }}</td>
+      <td>${{ c.iva | number:'1.2-2' }}</td>
+      <td><strong>${{ c.total | number:'1.2-2' }}</strong></td>
+      <td>
+        <a [routerLink]="['/carritos', c.carritoId]" class="btn btn-sm btn-info me-1">Ver</a>
+        <button (click)="eliminar(c.carritoId!)" class="btn btn-sm btn-danger"
+                [disabled]="c.estado !== 'Activo'">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
