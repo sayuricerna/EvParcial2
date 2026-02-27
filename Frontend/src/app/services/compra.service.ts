@@ -5,7 +5,7 @@ import { Compra } from '../interfaces/compra.interface';
 
 @Injectable({ providedIn: 'root' })
 export class CompraService {
-  private url = 'http://localhost:5116/api/Compras';
+  private url = 'https://localhost:7044/api/compras';
 
   constructor(private http: HttpClient) {}
 

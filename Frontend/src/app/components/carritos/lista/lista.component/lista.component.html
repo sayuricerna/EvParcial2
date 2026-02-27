@@ -5,12 +5,18 @@
 <div class="card mb-4 p-3">
   <h5>Crear nuevo carrito</h5>
   <div class="d-flex gap-2">
-    <select class="form-select" [(ngModel)]="clienteId">
+    <!-- <select class="form-select" [(ngModel)]="clienteId">
       <option [value]="0">Seleccione un cliente...</option>
       <option *ngFor="let c of clientes" [value]="c.clienteId">
         {{ c.nombre }} {{ c.apellido }}
       </option>
-    </select>
+    </select> -->
+    <select class="form-select" [(ngModel)]="clienteId">
+        <option [ngValue]="0">Seleccione un cliente...</option>
+        <option *ngFor="let c of clientes" [ngValue]="c.clienteId">
+            {{ c.nombre }} {{ c.apellido }}
+        </option>
+        </select>
     <button class="btn btn-primary" (click)="crear()" [disabled]="!clienteId">Crear</button>
   </div>
 </div>

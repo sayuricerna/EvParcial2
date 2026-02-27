@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -18,7 +19,11 @@ export class CarritoService {
   }
 
   create(clienteId: number): Observable<Carrito> {
-    return this.http.post<Carrito>(this.url, { clienteId });
+    return this.http.post<Carrito>(this.url, {
+      clienteId: clienteId,
+      estado: 'Activo',
+      fechaCreacion: new Date().toISOString()
+    });
   }
 
   agregarProducto(carritoId: number, item: CarritoProducto): Observable<any> {
