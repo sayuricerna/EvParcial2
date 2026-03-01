@@ -8,7 +8,7 @@
         public int Cantidad { get; set; }
         public decimal PrecioUnitario { get; set; }
 
-        public Carrito Carrito { get; set; }
-        public Producto Producto { get; set; }
+        public Carrito? Carrito { get; set; }
+        public Producto? Producto { get; set; }
     }
 }
