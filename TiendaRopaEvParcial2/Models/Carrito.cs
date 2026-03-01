@@ -7,7 +7,7 @@
         public DateTime FechaCreacion { get; set; } = DateTime.Now;
         public string Estado { get; set; } = "Activo";
 
-        public Cliente Cliente { get; set; }
-        public ICollection<CarritoProducto> CarritoProductos { get; set; }
+        public Cliente? Cliente { get; set; }
+        public ICollection<CarritoProducto>? CarritoProductos { get; set; }
     }
 }
